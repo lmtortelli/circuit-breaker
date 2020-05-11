@@ -150,4 +150,14 @@ class CircuitBreaker implements ICircuitBreaker
     {
         return self::$adapter->setSuccess($service);
     }
+
+    /**
+     * @inheritDoc
+     */
+    public static function setMassiveServices(array $services, array $settings): void
+    {
+        foreach ($services as $service) {
+            self::setServiceSettings($service,$settings);
+        }
+    }
 }

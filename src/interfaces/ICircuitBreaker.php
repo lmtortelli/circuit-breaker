@@ -37,6 +37,14 @@ interface ICircuitBreaker {
     public static function setServiceSettings(string $service, array $settings): void;
 
     /**
+     * Set custom settings for each service
+     *
+     * @param string $service
+     * @param array $settings
+     */
+    public static function setMassiveServices(array $services, array $settings): void;
+
+    /**
      * Get setting for a service, if not set, get from default settings
      *
      * @param string $service
