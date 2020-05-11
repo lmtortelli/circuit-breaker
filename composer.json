@@ -1,0 +1,40 @@
+{
+    "name": "melhorenvio/circuit-breaker",
+    "description": "Desc",
+    "keywords": [
+        "melhorenvio",
+        "circuit-breaker"
+    ],
+    "homepage": "https://github.com/tortelli/circuit-breaker",
+    "license": "MIT",
+    "type": "library",
+    "authors": [
+        {
+            "name": "Lucas Tortelli",
+            "email": "lucas.tortelli@melhorenvio.com",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php": "^7.2",
+        "illuminate/support": "^6.0",
+        "ext-redis": "*"
+    },
+    "require-dev": {
+        "orchestra/testbench": "^4.0",
+        "phpunit/phpunit": "^8.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "MelhorEnvio\\CircuitBreaker\\": "src"
+        }
+    },
+
+    "extra": {
+        "laravel": {
+            "providers": [
+                "MelhorEnvio\\CircuitBreaker\\CircuitBreakerServiceProvider"
+            ]
+        }
+    }
+}
