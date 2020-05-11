@@ -10,6 +10,6 @@ class CircuitBreakerServiceProvider extends ServiceProvider
 
     public function register()
     {
-        $this->app->bind(ICircuitBreaker::class,CircuitBreaker::class);
+        $this->app->singleton(ICircuitBreaker::class, CircuitBreaker::class);
     }
 }
