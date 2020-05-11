@@ -1,9 +1,9 @@
 <?php
 
-namespace MelhorEnvio\CircuitBreaker;
+namespace Tortelli\CircuitBreaker;
 
-use MelhorEnvio\CircuitBreaker\Adapters\IAdapter;
-use MelhorEnvio\CircuitBreaker\Interfaces\ICircuitBreaker;
+use Tortelli\CircuitBreaker\Adapters\IAdapter;
+use Tortelli\CircuitBreaker\Interfaces\ICircuitBreaker;
 
 class CircuitBreaker implements ICircuitBreaker
 {

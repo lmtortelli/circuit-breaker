@@ -1,9 +1,9 @@
 <?php
 
-namespace MelhorEnvio\CircuitBreaker;
+namespace Tortelli\CircuitBreaker;
 
 use Illuminate\Support\ServiceProvider;
-use MelhorEnvio\CircuitBreaker\Interfaces\ICircuitBreaker;
+use Tortelli\CircuitBreaker\Interfaces\ICircuitBreaker;
 
 class CircuitBreakerServiceProvider extends ServiceProvider
 {

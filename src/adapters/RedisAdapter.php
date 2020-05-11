@@ -1,8 +1,8 @@
 <?php
 
-namespace MelhorEnvio\CircuitBreaker\Adapters;
+namespace Tortelli\CircuitBreaker\Adapters;
 
-use MelhorEnvio\CircuitBreaker\CircuitBreaker;
+use Tortelli\CircuitBreaker\CircuitBreaker;
 
 class RedisAdapter implements IAdapter
 {
