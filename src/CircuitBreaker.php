@@ -133,7 +133,7 @@ class CircuitBreaker implements ICircuitBreaker
      * @param string $service
      * @param array $settings
      */
-    private function setServiceSettings(string $service, array $settings): void
+    private static function setServiceSettings(string $service, array $settings): void
     {
         foreach (self::$defaultSettings as $defaultSetting => $settingValue) {
             self::$servicesSettings[$service][$defaultSetting] =
