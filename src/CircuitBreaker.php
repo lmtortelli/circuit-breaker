@@ -13,20 +13,11 @@ class CircuitBreaker implements ICircuitBreaker
      */
     protected static $adapter;
 
-    /**
-     * @var string
-     */
-    protected static $redisNamespace;
 
     /**
      * @var array
      */
     protected static $servicesSettings;
-
-    /**
-     * @var array
-     */
-    protected static $globalSettings;
 
     /**
      * @var array
@@ -53,39 +44,12 @@ class CircuitBreaker implements ICircuitBreaker
         return self::$adapter;
     }
 
-    /**
-     * Set global settings for all services
-     *
-     * @param array $settings
-     */
-    public static function setGlobalSettings(array $settings): void
-    {
-        foreach (self::$defaultSettings as $defaultSetting => $settingValue) {
-            self::$globalSettings[$defaultSetting] =
-                (int)($settings[$defaultSetting] ?? $settingValue);
-        }
-    }
 
-    /**
-     * @return array
-     */
-    public static function getGlobalSettings(): array
+    public static function setService(string $service, array $settings) : bool
     {
-        return self::$globalSettings;
-    }
+        self::$adapter->setService($service);
 
-    /**
-     * Set custom settings for each service
-     *
-     * @param string $service
-     * @param array $settings
-     */
-    public static function setServiceSettings(string $service, array $settings): void
-    {
-        foreach (self::$defaultSettings as $defaultSetting => $settingValue) {
-            self::$servicesSettings[$service][$defaultSetting] =
-                (int)($settings[$defaultSetting] ?? self::$globalSettings[$defaultSetting] ?? $settingValue);
-        }
+        self::setServiceSettings($service,$settings);
     }
 
     /**
@@ -157,7 +121,24 @@ class CircuitBreaker implements ICircuitBreaker
     public static function setMassiveServices(array $services, array $settings): void
     {
         foreach ($services as $service) {
+            self::$adapter->setService($service);
+
             self::setServiceSettings($service,$settings);
         }
     }
+
+    /**
+     * Set custom settings for each service
+     *
+     * @param string $service
+     * @param array $settings
+     */
+    private function setServiceSettings(string $service, array $settings): void
+    {
+        foreach (self::$defaultSettings as $defaultSetting => $settingValue) {
+            self::$servicesSettings[$service][$defaultSetting] =
+                (int)($settings[$defaultSetting] ?? self::$globalSettings[$defaultSetting] ?? $settingValue);
+        }
+    }
+
 }

@@ -17,24 +17,12 @@ interface ICircuitBreaker {
     public static function getAdapter(): IAdapter;
 
     /**
-     * Set global settings for all services
-     *
-     * @param array $settings
-     */
-    public static function setGlobalSettings(array $settings): void;
-
-    /**
-     * @return array
-     */
-    public static function getGlobalSettings(): array;
-
-    /**
-     * Set custom settings for each service
+     * Set a service into Circuit-Breaker
      *
      * @param string $service
      * @param array $settings
      */
-    public static function setServiceSettings(string $service, array $settings): void;
+    public static function setService(string $service, array $settings): bool;
 
     /**
      * Set custom settings for each service
