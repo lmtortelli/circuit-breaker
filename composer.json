@@ -1,8 +1,8 @@
 {
-    "name": "tortelli/circuit-breaker",
+    "name": "melhorenvio/circuit-breaker",
     "description": "Desc",
     "keywords": [
-        "tortelli",
+        "melhorenvio",
         "circuit-breaker"
     ],
     "homepage": "https://github.com/tortelli/circuit-breaker",
@@ -25,14 +25,14 @@
     },
     "autoload": {
         "psr-4": {
-            "Tortelli\\CircuitBreaker\\": "src"
+            "MelhorEnvio\\CircuitBreaker\\": "src"
         }
     },
 
     "extra": {
         "laravel": {
             "providers": [
-                "Tortelli\\CircuitBreaker\\CircuitBreakerServiceProvider"
+                "MelhorEnvio\\CircuitBreaker\\CircuitBreakerServiceProvider"
             ]
         }
     }

@@ -1,6 +1,6 @@
 <?php
 
-namespace Tortelli\CircuitBreaker;
+namespace MelhorEnvio\CircuitBreaker;
 
 use Tortelli\CircuitBreaker\Adapters\IAdapter;
 use Tortelli\CircuitBreaker\Interfaces\ICircuitBreaker;

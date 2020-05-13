@@ -1,6 +1,6 @@
 <?php
 
-namespace Tortelli\CircuitBreaker;
+namespace MelhorEnvio\CircuitBreaker;
 
 use Illuminate\Support\ServiceProvider;
 

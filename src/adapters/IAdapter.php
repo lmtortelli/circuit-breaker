@@ -1,6 +1,6 @@
 <?php
 
-namespace Tortelli\CircuitBreaker\Adapters;
+namespace MelhorEnvio\CircuitBreaker\Adapters;
 
 interface IAdapter
 {
