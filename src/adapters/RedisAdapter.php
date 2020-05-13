@@ -133,4 +133,9 @@ class RedisAdapter implements IAdapter
 
         return $this->cachedService[$service] = 'circuit-breaker:' . $this->redisNamespace . ':' . base64_encode($service);
     }
+
+    public function setService(string $service): bool
+    {
+        $this->redis->set($this->makeNamespace($service));
+    }
 }
