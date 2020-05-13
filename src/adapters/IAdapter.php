@@ -19,6 +19,6 @@ interface IAdapter
 
     public function setSuccess(string $service) : bool;
 
-    public function setService(string $service) : bool;
+    public function setService(string $service) : void;
 
 }

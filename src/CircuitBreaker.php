@@ -29,7 +29,9 @@ class CircuitBreaker implements ICircuitBreaker
     ];
 
     /**
-     * @param AdapterInterface $adapter
+     * Set a Adapter for Circuit Breaker management
+     *
+     * @param IAdapter $adapter
      */
     public static function setAdapter(IAdapter $adapter): void
     {
@@ -37,6 +39,8 @@ class CircuitBreaker implements ICircuitBreaker
     }
 
     /**
+     * Retrieve the instance of Adapter
+     *
      * @return AdapterInterface
      */
     public static function getAdapter(): IAdapter
@@ -44,8 +48,13 @@ class CircuitBreaker implements ICircuitBreaker
         return self::$adapter;
     }
 
-
-    public static function setService(string $service, array $settings) : bool
+    /**
+     * Set a service to be managed by Circuit Breaker
+     *
+     * @param string $service
+     * @param array $settings
+     */
+    public static function setService(string $service, array $settings) : void
     {
         self::$adapter->setService($service);
 
@@ -79,6 +88,7 @@ class CircuitBreaker implements ICircuitBreaker
         }
 
         if (self::$adapter->reachRateLimit($service)) {
+
             self::$adapter->setOpenCircuit($service);
             self::$adapter->setHalfOpenCircuit($service);
             return false;
@@ -95,6 +105,7 @@ class CircuitBreaker implements ICircuitBreaker
      */
     public static function failure(string $service)
     {
+
         if (self::$adapter->isHalfOpen($service)) {
             self::$adapter->setOpenCircuit($service);
             self::$adapter->setHalfOpenCircuit($service);
@@ -133,7 +144,7 @@ class CircuitBreaker implements ICircuitBreaker
      * @param string $service
      * @param array $settings
      */
-    private static function setServiceSettings(string $service, array $settings): void
+    protected static function setServiceSettings(string $service, array $settings): void
     {
         foreach (self::$defaultSettings as $defaultSetting => $settingValue) {
             self::$servicesSettings[$service][$defaultSetting] =

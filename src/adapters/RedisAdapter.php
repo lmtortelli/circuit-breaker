@@ -52,11 +52,13 @@ class RedisAdapter implements IAdapter
         $failures = $this->redis->get(
             $this->makeNamespace($service) . ':failures'
         );
-
+        $failures;
         return $failures && $failures >= CircuitBreaker::getServiceSetting($service, 'failureRateThreshold');
     }
 
     /**
+     *
+     *
      * @param string $service
      * @return bool|string
      */
@@ -66,6 +68,8 @@ class RedisAdapter implements IAdapter
     }
 
     /**
+     * Increment a failure count in specific service
+     *
      * @param string $service
      * @return bool
      */
@@ -84,6 +88,8 @@ class RedisAdapter implements IAdapter
     }
 
     /**
+     *
+     *
      * @param string $service
      * @return bool
      */
@@ -97,6 +103,8 @@ class RedisAdapter implements IAdapter
     }
 
     /**
+     * Set a circuit's service like open
+     *
      * @param string $service
      */
     public function setOpenCircuit(string $service) : void
@@ -109,6 +117,8 @@ class RedisAdapter implements IAdapter
     }
 
     /**
+     * Set a circuit's service like half open
+     *
      * @param string $service
      */
     public function setHalfOpenCircuit(string $service) : void
@@ -122,6 +132,8 @@ class RedisAdapter implements IAdapter
     }
 
     /**
+     * Create a namespace for avoid conflicts into Redis
+     *
      * @param string $service
      * @return string
      */
@@ -131,11 +143,18 @@ class RedisAdapter implements IAdapter
             return $this->cachedService[$service];
         }
 
-        return $this->cachedService[$service] = 'circuit-breaker:' . $this->redisNamespace . ':' . base64_encode($service);
+        return $this->cachedService[$service] = $this->redisNamespace . ':' . base64_encode($service);
     }
 
-    public function setService(string $service): bool
+    /***
+     * Set a service to be managed by Redis
+     *
+     * @param string $service
+     */
+    public function setService(string $service): void
     {
-        $this->redis->set($this->makeNamespace($service));
+        $this->redis->set($this->makeNamespace($service),
+        CircuitBreaker::getServiceSetting($service, 'timeWindow')
+        + CircuitBreaker::getServiceSetting($service, 'intervalToHalfOpen'));
     }
 }

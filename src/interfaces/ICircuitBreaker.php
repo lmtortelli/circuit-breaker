@@ -22,7 +22,7 @@ interface ICircuitBreaker {
      * @param string $service
      * @param array $settings
      */
-    public static function setService(string $service, array $settings): bool;
+    public static function setService(string $service, array $settings): void ;
 
     /**
      * Set custom settings for each service
